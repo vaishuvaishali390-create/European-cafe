@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Menu - V NOIR CAFÉ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins', sans-serif;
+background:#0f0f0f;
+color:#f5f1e8;
+}
+
+/* NAVIGATION */
+nav{
+background:#1c1c1c;
+padding:15px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav h1{
+font-family:'Playfair Display', serif;
+color:#d4af37;
+}
+
+nav ul{
+list-style:none;
+display:flex;
+}
+
+nav ul li{
+margin-left:25px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:#f5f1e8;
+}
+
+nav ul li a:hover{
+color:#d4af37;
+}
+
+/* SECTION */
+.section{
+padding:80px 8%;
+text-align:center;
+}
+
+.section h2{
+font-family:'Playfair Display', serif;
+font-size:40px;
+margin-bottom:30px;
+color:#d4af37;
+}
+
+/* CATEGORY BUTTONS */
+.category-buttons{
+margin-bottom:40px;
+}
+
+.category-buttons button{
+background:#d4af37;
+border:none;
+padding:10px 18px;
+margin:8px;
+cursor:pointer;
+border-radius:5px;
+font-weight:500;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+/* CARD */
+.card{
+background:#1c1c1c;
+border-radius:12px;
+overflow:hidden;
+transition:0.4s;
+display:flex;
+flex-direction:column;
+height:380px;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card h3{
+padding:10px;
+font-family:'Playfair Display', serif;
+}
+
+.card p{
+padding:0 10px 10px 10px;
+}
+
+.card button{
+margin:10px;
+padding:8px 15px;
+background:#d4af37;
+border:none;
+cursor:pointer;
+border-radius:5px;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h1>V NOIR CAFÉ</h1>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="menu.html">Menu</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="order.html">Order</a></li>
+</ul>
+</nav>
+
+<section class="section">
+
+<h2>Our Luxury Menu</h2>
+
+<!-- CATEGORY BUTTONS -->
+<div class="category-buttons">
+<button onclick="filterMenu('all')">All</button>
+<button onclick="filterMenu('drinks')">Drinks</button>
+<button onclick="filterMenu('breakfast')">Breakfast</button>
+<button onclick="filterMenu('lunch')">Lunch</button>
+<button onclick="filterMenu('dinner')">Dinner</button>
+<button onclick="filterMenu('snacks')">Snacks</button>
+</div>
+
+<div class="grid">
+
+<!-- DRINKS -->
+<div class="card drinks"><img src="DRINK 1.jpg"><h3>Latte</h3><p>€6</p><button>Add</button></div>
+<div class="card drinks"><img src="DRINK 2.jpg"><h3>Spezi</h3><p>€4</p><button>Add</button></div>
+<div class="card drinks"><img src="DRINK 3.jpg"><h3>Orangina</h3><p>€7</p><button>Add</button></div>
+<div class="card drinks"><img src="DRINK4.jpg"><h3>Chinotto</h3><p>€3</p><button>Add</button></div>
+<div class="card drinks"><img src="DRINK 5.jpg"><h3>Americano</h3><p>€5</p><button>Add</button></div>
+<div class="card drinks"><img src="DRINK 6.jpg"><h3>Iced Coffee</h3><p>€6</p><button>Add</button></div>
+
+<!-- BREAKFAST -->
+<div class="card breakfast"><img src="breakfast 1.jpg"><h3>Tartine</h3><p>€9</p><button>Add</button></div>
+<div class="card breakfast"><img src="Breakfast.jpg"><h3>Muesli</h3><p>€14</p><button>Add</button></div>
+<div class="card breakfast"><img src="breakfast 2.jpg"><h3>Continental Breakfast</h3><p>€8</p><button>Add</button></div>
+<div class="card breakfast"><img src="breakfast 3.jpg"><h3>Brotchen</h3><p>€9</p><button>Add</button></div>
+<div class="card breakfast"><img src="breakfast 4.jpg"><h3>Rugbroad</h3><p>€15</p><button>Add</button></div>
+<div class="card breakfast"><img src="breakfast 5.jpg"><h3>Hagelslag</h3><p>€16</p><button>Add</button></div>
+<div class="card breakfast"><img src="breakfast 6.jpg"><h3>Rosti</h3><p>€7</p><button>Add</button></div>
+
+<!-- LUNCH -->
+<div class="card lunch"><img src="lunch 1.jpg"><h3>Gazpacho</h3><p>€16</p><button>Add</button></div>
+<div class="card lunch"><img src="lunch 2.jpg"><h3>Spaetzle</h3><p>€16</p><button>Add</button></div>
+<div class="card lunch"><img src="lunch 4.jpg"><h3>Irish Stew</h3><p>€18</p><button>Add</button></div>
+<div class="card lunch"><img src="lunch 5.jpg"><h3>Shrimp Puttanesca</h3><p>€19</p><button>Add</button></div>
+<div class="card lunch"><img src="lunch 6.jpg"><h3>Bratwurst</h3><p>€14</p><button>Add</button></div>
+
+<!-- DINNER -->
+<div class="card dinner"><img src="dinner 1.jpg"><h3>Bourguignon Dinner</h3><p>€21</p><button>Add</button></div>
+<div class="card dinner"><img src="dinner 2.jpg"><h3>Paella Dinner</h3><p>€22</p><button>Add</button></div>
+<div class="card dinner"><img src="dinner 3.jpg"><h3>Wiener Schnitzel</h3><p>€27</p><button>Add</button></div>
+<div class="card dinner"><img src="dinner 4.jpg"><h3>Goulash</h3><p>€23</p><button>Add</button></div>
+<div class="card dinner"><img src="dinner 5.jpg"><h3>Carbonara</h3><p>€25</p><button>Add</button></div>
+<div class="card dinner"><img src="dinner 6.jpg"><h3>Broascht</h3><p>€25</p><button>Add</button></div>
+
+<!-- SNACKS -->
+<div class="card snacks"><img src="snack 1.jpg"><h3>Waffle</h3><p>€8</p><button>Add</button></div>
+<div class="card snacks"><img src="snack 2.jpg"><h3>Currywurst</h3><p>€5</p><button>Add</button></div>
+<div class="card snacks"><img src="snack 3.jpg"><h3>Arancini</h3><p>€4</p><button>Add</button></div>
+<div class="card snacks"><img src="snack 4.jpg"><h3>Empanadas</h3><p>€5</p><button>Add</button></div>
+<div class="card snacks"><img src="snack 5.jpg"><h3>Langos</h3><p>€3</p><button>Add</button></div>
+<div class="card snacks"><img src="snack 6.jpg"><h3>Belgian Fries</h3><p>€7</p><button>Add</button></div>
+
+</div>
+</section>
+
+<script>
+function filterMenu(category){
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+if(category==="all"){
+card.style.display="flex";
+}
+else if(card.classList.contains(category)){
+card.style.display="flex";
+}
+else{
+card.style.display="none";
+}
+});
+}
+</script>
+
+</body>
+</html>

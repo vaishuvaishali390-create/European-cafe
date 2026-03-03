@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Order | V NOIR CAFE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#0f0f0f;
+    color:#f5f1e8;
+    overflow-x:hidden;
+}
+
+nav{
+    background:#1c1c1c;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+h2,h3,h1{
+    font-family:'Playfair Display', serif;
+}
+
+nav h1{
+    color:#d4af37;
+}
+
+/* HEADER */
+.header{
+    background:#1c1c1c;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#d4af37;
+    font-size:22px;
+}
+
+.back-btn{
+    color:#d4af37;
+    cursor:pointer;
+}
+
+.container{
+    padding:60px 10%;
+}
+
+/* ORDER TYPE */
+.order-type{
+    display:flex;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.type-btn{
+    padding:10px 25px;
+    border:2px solid #d4af37;
+    background:#1c1c1c;
+    color:#d4af37;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.type-btn.active,
+.type-btn:hover{
+    background:#d4af37;
+    color:black;
+}
+
+/* GRID */
+.category{
+    margin-top:50px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-top:20px;
+}
+
+.card{
+    background:#1c1c1c;
+    border-radius:10px;
+    overflow:hidden;
+    transition:0.4s;
+    text-align:center;
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card h3{
+    padding:10px;
+}
+
+.price{
+    color:#d4af37;
+}
+
+.card button{
+    margin:10px;
+    padding:8px 15px;
+    background:#d4af37;
+    border:none;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+/* COMBO */
+.combo-box{
+    background:#1c1c1c;
+    padding:20px;
+    border-radius:10px;
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.combo-box select{
+    width:50%;
+    padding:15px;
+    font-size:16px;
+    border-radius:8px;
+    border:1px solid #d4af37;
+    background:#1c1c1c;
+    color:#f5f1e8;
+    appearance:none;
+}
+
+.combo-box button{
+    
+    background:#d4af37;
+    border:none;
+    padding:20px;
+    cursor:pointer;
+    font-size:16px;
+    width: 50%;
+}
+
+/* CART */
+.cart-panel{
+    position:fixed;
+    right:-400px;
+    top:0;
+    width:350px;
+    height:100%;
+    background:#1c1c1c;
+    padding:20px;
+    transition:0.4s;
+    overflow-y:auto;
+}
+
+.cart-panel.active{
+    right:0;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+    border-bottom:1px solid #333;
+    padding-bottom:10px;
+}
+
+.qty-btn{
+    padding:3px 8px;
+    background:#d4af37;
+    border:none;
+    cursor:pointer;
+    margin:0 5px;
+}
+
+.remove{
+    color:red;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.total{
+    margin-top:20px;
+    font-weight:bold;
+    color:#d4af37;
+}
+
+.place-order{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    background:#d4af37;
+    border:none;
+    cursor:pointer;
+}
+
+/* CART ICON */
+.cart-icon{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    background:#d4af37;
+    color:black;
+    padding:15px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#d4af37;
+    color:black;
+    padding:12px 25px;
+    border-radius:30px;
+    opacity:0;
+    transition:0.4s;
+}
+
+.toast.show{
+    opacity:1;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .order-type{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+  <h1>V NOIR CAFÉ</h1>
+  <div class="back-btn" onclick="goBack()">← Back</div>
+</nav>
+</header>
+
+<div class="container">
+
+<h1>Start Your Order</h1>
+
+<div class="order-type">
+<button class="type-btn active" onclick="selectType(this)">Dine In</button>
+<button class="type-btn" onclick="selectType(this)">Takeaway</button>
+</div>
+
+<!-- PREMIUM DRINKS -->
+<div class="category">
+<h2>Premium Drinks</h2> 
+<div class="grid">
+    <div class="card"> 
+        <img src="DRINK 1.jpg"> 
+        <h3>Fresh Juice</h3> 
+        <p class="price">₹150</p> 
+        <button onclick="addToCart('Fresh Juice',150)">Add</button>
+    </div>
+    <div class="card"> 
+        <img src="DRINK 5.jpg"> 
+        <h3>Blue Berry/h3>
+        <p class="price">₹220</p> 
+        <button onclick="addToCart('Cappuccino',220)">Add</button>
+    </div>
+    <div class="card"> 
+        <img src="DRINK 3.jpg"> 
+        <h3>Orea shake</h3> 
+        <p class="price">₹240</p> 
+        <button onclick="addToCart('Cool',240)">Add</button> 
+    </div>
+</div>
+</div>
+
+<!-- MEALS (using same card style/images as drinks) -->
+<div class="category">
+<h2>Meals</h2>
+<div class="grid">
+    <div class="card"> 
+        <img src="lunch 1.jpg"> 
+        <h3>Italian</h3> 
+        <p class="price">₹150</p> 
+        <button onclick="addToCart('Italian',150)">Add</button>
+    </div>
+    <div class="card"> 
+        <img src="lunch 2.jpg"> 
+        <h3>French</h3> 
+        <p class="price">₹100</p> 
+        <button onclick="addToCart('French',100)">Add</button> 
+    </div>
+    <div class="card"> 
+        <img src="lunch 5.jpg"> 
+        <h3>Italian</h3> 
+        <p class="price">₹150</p> 
+        <button onclick="addToCart('Italian',150)">Add</button> 
+    </div>
+</div>
+</div>
+
+<!-- CUSTOM COMBO -->
+<div class="category">
+<h2>Create Your Custom Combo</h2>
+<div class="combo-box">
+<select id="drink">
+<option value="">Select Drink</option>
+<option value="Espresso-150">Espresso - ₹150</option>
+<option value="Latte-20">Latte - ₹20</option>
+<option value="Italian Drink-24"> Italian Drink-24- ₹24</option>
+<option value="Lime Drink-15"> Lime Drink- ₹15</option>
+<option value="Fresh Juice-17"> Fresh Juice- ₹17</option>
+<option value="Cool Mango Juice-23"> Cool Juice- ₹23</option>
+<option value="Pomogranate Jucie-17"> Pomogranante Juice- ₹17</option>
+<option value="Butter Fruit-19"> Butter Fruit- ₹19</option>
+<option value="Watermelon Juice-20">Watermelon Juice- ₹17</option>
+
+</select>
+
+<select id="main">
+<option value="">Select Main</option>
+<option value="Grilled Chicken-480">Grilled Chicken - ₹480</option>
+<option value="Full Meals"-250>Burger - ₹250</option>
+<option value="Fried Egg Rice-200">Sandwich - ₹200</option>
+<option value="Manjurian-350">Potato Pops- ₹350</option>
+<option value="Chicken Rice-360">Chicken Rice - ₹360</option>
+<option value="Fruit Salad-250">Fruit Salad - ₹250</option>
+<option value="Pizza-150">Pizza - ₹150</option>
+</select>
+
+<select id="side">
+<option value="">Select Side</option>
+<option value="Fries-180">Fries - ₹80</option>
+<option value="Burger-350">Burger - ₹30</option>
+<option value="Sandwich-350">Sandwich - ₹50</option>
+<option value="Potato Pops-350">Potato Pops- ₹40</option>
+<option value="Chicken Fry-350">Chicken Fry - ₹60</option>
+
+
+
+</select>
+
+<button onclick="addCombo()">Add Combo</button>
+</div>
+</div>
+
+</div>
+
+<!-- CART -->
+<div class="cart-panel" id="cartPanel">
+<h2>Your Cart</h2>
+<div id="cartItems"></div>
+<p class="total">Total: ₹<span id="total">0</span></p>
+<button class="place-order" onclick="placeOrder()">Place Order</button>
+</div>
+
+<div class="cart-icon" onclick="toggleCart()">🛒</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+let cart=[];
+let total=0;
+
+function goBack(){
+    window.history.back();
+}
+
+function selectType(btn){
+document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+}
+
+function addToCart(name,price){
+let item=cart.find(i=>i.name===name);
+if(item){item.qty++;}
+else{cart.push({name,price,qty:1});}
+updateCart();
+showToast(name+" added to cart");
+}
+
+function addCombo(){
+let drink=document.getElementById("drink").value;
+let main=document.getElementById("main").value;
+let side=document.getElementById("side").value;
+
+if(!drink||!main||!side){
+showToast("Select all combo items");
+return;
+}
+
+[drink,main,side].forEach(i=>{
+let [n,p]=i.split("-");
+addToCart(n,parseInt(p));
+});
+}
+
+function updateCart(){
+let container=document.getElementById("cartItems");
+container.innerHTML="";
+total=0;
+
+cart.forEach((item,index)=>{
+total+=item.price*item.qty;
+container.innerHTML+=`
+<div class="cart-item">
+<div>
+${item.name}<br>
+<button class="qty-btn" onclick="changeQty(${index},-1)">-</button>
+${item.qty}
+<button class="qty-btn" onclick="changeQty(${index},1)">+</button>
+</div>
+<div>
+₹${item.price*item.qty}<br>
+<span class="remove" onclick="removeItem(${index})">Remove</span>
+</div>
+</div>`;
+});
+
+document.getElementById("total").innerText=total;
+}
+
+function changeQty(i,c){
+cart[i].qty+=c;
+if(cart[i].qty<=0)cart.splice(i,1);
+updateCart();
+}
+
+function removeItem(i){
+cart.splice(i,1);
+updateCart();
+}
+
+function toggleCart(){
+document.getElementById("cartPanel").classList.toggle("active");
+}
+
+function placeOrder(){
+if(cart.length==0){
+showToast("Your cart is empty!");
+return;
+}
+showToast("Order Placed Successfully!");
+cart=[];
+updateCart();
+toggleCart();
+}
+
+function showToast(msg){
+let t=document.getElementById("toast");
+t.innerText=msg;
+t.classList.add("show");
+setTimeout(()=>{t.classList.remove("show");},2000);
+}
+</script>
+
+</body>
+</html>
